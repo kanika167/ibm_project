@@ -1,0 +1,83 @@
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+20/08/25 08:54:14 INFO DriverLogger: Starting the Application
+20/08/25 08:54:14 INFO DriverLogger: Setting Hadoop Configurations for COS
+20/08/25 08:54:14 INFO DriverLogger: Hadoop Configurations for COS Completed
+20/08/25 08:54:14 INFO DriverLogger: Reading CSV file at cos://candidate-exercise.myCos/emp-data.csv
+20/08/25 08:54:16 INFO ObjectStoreVisitor: Stocator registered as cos for cos://candidate-exercise.myCos/emp-data.csv
+20/08/25 08:54:16 INFO COSAPIClient: Init :  cos://candidate-exercise.myCos/emp-data.csv
+20/08/25 08:54:18 WARN ApacheUtils: NoSuchMethodException was thrown when disabling normalizeUri. This indicates you are using an old version (< 4.5.8) of Apache http client. It is recommended to use http client version >= 4.5.9 to avoid the breaking change introduced in apache client 4.5.7 and the latency in exception handling. See https://github.com/aws/aws-sdk-java/issues/1919 for more information
+20/08/25 08:54:32 INFO DriverLogger: Reading CSV file at cos://candidate-exercise.myCos/emp-data.csv Completed
+20/08/25 08:54:32 INFO DriverLogger: Saving Data in DB2
+20/08/25 08:54:44 INFO DriverLogger: Data Stored in DB2
+20/08/25 08:54:44 INFO DriverLogger: Reading Data from DB2
+20/08/25 08:54:47 INFO DriverLogger: Completed reading data from db2 and created the dataframe
+20/08/25 08:54:47 INFO DriverLogger:  Calculating Gender ratio as Male:Female in each department
+20/08/25 08:54:47 INFO UtilsLogger: Displaying result for Gender Ratio
++------------------------+------------------+
+|Department              |gender_ratio      |
++------------------------+------------------+
+|Services                |0.8809523809523809|
+|Product Management      |1.146341463414634 |
+|Sales                   |1.1111111111111112|
+|Engineering             |0.9473684210526315|
+|Accounting              |1.3214285714285714|
+|Business Development    |0.9024390243902439|
+|Research and Development|0.8157894736842105|
+|Legal                   |1.4411764705882353|
+|Training                |1.0555555555555556|
+|Marketing               |1.064516129032258 |
+|Support                 |1.2               |
+|NULL                    |1.2727272727272727|
+|Human Resources         |0.926829268292683 |
++------------------------+------------------+
+20/08/25 08:55:02 INFO DriverLogger: Completed finding gender ratio, now writing it to cos://candidate-exercise.myCos/gender_ratio.parquet
+
+20/08/25 08:55:04 WARN COSAPIClient: gender_ratio.parquet/ created by failed Spark job. Skipped. Delete temporarily disabled 
+20/08/25 08:55:11 INFO UtilsLogger: Data written at cos://candidate-exercise.myCos/gender_ratio.parquet
+20/08/25 08:55:11 INFO DriverLogger:  Calculating average salary in each department
+20/08/25 08:55:11 INFO UtilsLogger: Displaying result for Average Salary
++------------------------+-----------------+
+|Department              |average_salary   |
++------------------------+-----------------+
+|Services                |75734.75609756098|
+|Product Management      |73201.34831460674|
+|Sales                   |72159.125        |
+|Engineering             |72139.875        |
+|Accounting              |76358.50746268657|
+|Business Development    |77089.13580246913|
+|Research and Development|68445.4054054054 |
+|Legal                   |71477.27272727272|
+|Training                |76036.62337662338|
+|Marketing               |76774.92307692308|
+|Support                 |75029.13580246913|
+|NULL                    |78202.69230769231|
+|Human Resources         |70936.9512195122 |
++------------------------+-----------------+
+
+20/08/25 08:55:14 INFO DriverLogger: Completed finding average salary, now writing it to cos://candidate-exercise.myCos/average_salary.parquet
+20/08/25 08:55:14 WARN COSAPIClient: file status average_salary.parquet returned 404
+20/08/25 08:55:20 INFO UtilsLogger: Data written at cos://candidate-exercise.myCos/average_salary.parquet
+20/08/25 08:55:20 INFO DriverLogger:  Calculating salary gap between males and female in each department
+20/08/25 08:55:20 INFO UtilsLogger: Displaying result for Salary Gap
++--------------------+------------------+
+|          Department|        salary_gap|
++--------------------+------------------+
+|            Training|-2739.327485380112|
+|            Services|6380.7400257400295|
+|             Support| 5384.523809523816|
+|Research and Deve...|2458.6332767402346|
+|  Product Management|5327.6803321224725|
+|         Engineering|-7505.160818713455|
+|               Sales|1633.0833333333285|
+|          Accounting| 4591.071428571435|
+|               Legal| 4491.194477791127|
+|           Marketing|-5405.923753665687|
+|                NULL|14913.636363636368|
+|     Human Resources| 7217.272143774069|
+|Business Development| 7388.681608437706|
++--------------------+------------------+
+20/08/25 08:55:24 INFO DriverLogger: Completed finding salary gap, now writing it to cos://candidate-exercise.myCos/salary_gap.parquet
+
+20/08/25 08:55:25 WARN COSAPIClient: file status salary_gap.parquet returned 404
+20/08/25 08:55:35 INFO UtilsLogger: Data written at cos://candidate-exercise.myCos/salary_gap.parquet
+20/08/25 08:55:35 INFO DriverLogger: Copleted All the tasks. Closing the spark session now
